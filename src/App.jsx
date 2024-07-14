@@ -1,8 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import Home from './pages/Home.jsx';
-import Login from './pages/Login.jsx';
-import About from './pages/About.jsx';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import About from './pages/About';
+import Register from './pages/Register';
+
 import './index.css';
 
 const App = () => {
@@ -21,6 +23,8 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/about" element={<About />} />
+            <Route path="/register" element={<Register />} />
+
           </Routes>
         </main>
       </div>

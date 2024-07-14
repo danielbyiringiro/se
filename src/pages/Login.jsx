@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './Login.css';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import Register from './Register'
 
 
 const Login = () => {
@@ -45,7 +47,7 @@ const Login = () => {
           <button type="submit" className="sign-in-button">Sign in</button>
         </form>
         <p>
-          Don't have an account yet? <a href="#">Sign Up</a>
+          Don't have an account yet? <Link to="/register">Register</Link>
         </p>
       </div>
     </div>
