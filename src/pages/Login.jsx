@@ -1,54 +1,26 @@
-import React, { useState } from 'react';
-import './Login.css';
+import React from 'react';
+import './Register.css';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import Register from './Register'
-
 
 const Login = () => {
-
-    const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Add your login logic here
-    console.log('Login submitted:', { email, password });
-  };
   return (
-    <div className="login-container">
-      <div className="login-box">
-        <div className="login-logo">
-          <img src="logo.png" alt="Logo" />
+    <div className="register-container">
+      <div className="overlay">
+        <div className = "welcome">
+             <h1>WELCOME TO ASHESI'S DEGREE PORTAL!</h1>
         </div>
-        <h2>Welcome back</h2>
-        <p>Please enter your details to sign in.</p>
-        <div className="social-login">
-          <button className="social-button apple"></button>
-          <button className="social-button google">G</button>
-          <button className="social-button twitter">T</button>
+        
+        <div className="register-box">
+          <h2>Register Now!</h2>
+          <form>
+            <input type="text" placeholder="Username" />
+            <input type="password" placeholder="Password" />
+            <button type="submit">Login</button>
+          </form>
+          <p>
+            Already have an account? <Link to="/register">Register</Link>
+          </p>
         </div>
-        <p>OR</p>
-        <form>
-          <div className="input-group">
-            <label>E-Mail Address</label>
-            <input type="email" placeholder="Enter your email..." />
-          </div>
-          <div className="input-group">
-            <label>Password</label>
-            <input type="password" placeholder="Enter your password..." />
-          </div>
-          <div className="remember-forgot">
-            <div>
-              <input type="checkbox" id="remember" />
-              <label htmlFor="remember">Remember me</label>
-            </div>
-            <a href="#">Forgot password?</a>
-          </div>
-          <button type="submit" className="sign-in-button">Sign in</button>
-        </form>
-        <p>
-          Don't have an account yet? <Link to="/register">Register</Link>
-        </p>
       </div>
     </div>
   );

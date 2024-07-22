@@ -1,0 +1,44 @@
+.main-content {
+    margin-left: 200px;
+     /*background-image: url('../assets/login.jpeg');*/
+    background-color: blue !important;
+    padding: 20px;
+    width: 90%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  
+.stats {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 50px;
+  }
+  
+.stat-item {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    width: 150px;
+  }
+  
+.stat-title {
+    font-size: 14px;
+    color: #8c3d3d;
+  }
+
+  
+.stat-value {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+.courses {
+    font-size: 18px;
+  }
+  
