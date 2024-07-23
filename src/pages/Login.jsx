@@ -11,7 +11,7 @@ const Login = () => {
         </div>
         
         <div className="register-box">
-          <h2>Register Now!</h2>
+          <h2>Login</h2>
           <form>
             <input type="text" placeholder="Username" />
             <input type="password" placeholder="Password" />

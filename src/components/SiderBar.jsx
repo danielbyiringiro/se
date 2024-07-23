@@ -2,6 +2,7 @@
 import React from 'react';
 import './SideBar.css';
 import { FaTachometerAlt, FaUpload, FaClipboardList, FaChartLine, FaCalendarAlt, FaBell, FaCog, FaSignOutAlt } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const sidebar = () => {
   return (
@@ -10,8 +11,8 @@ const sidebar = () => {
         ASHESI DEGREE AUDIT PORTAL
       </div>
       <ul className="sidebar-menu">
-        <li><FaTachometerAlt /> Dashboard</li>
-        <li><FaUpload /> Upload Transcript</li>
+        <li><Link to = '/dashboard'><FaTachometerAlt /> Dashboard</Link></li>
+        <li><Link to = '/transcript'><FaUpload /> Upload Transcript</Link></li>
         <li><FaClipboardList /> My Degree Audit</li>
         <li><FaChartLine /> Progress Report</li>
         <li><FaCalendarAlt /> Schedule Appointment</li>
