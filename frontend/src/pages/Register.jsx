@@ -6,7 +6,7 @@ export default () =>
 {
 
   const [formData, setFormData] = useState({
-    username: '',
+    email: '',
     studentid: '',
     password: '',
     confirm: ''
@@ -33,8 +33,8 @@ export default () =>
         <div className="register-box">
           <h2>Register Now!</h2>
           <form>
-            <input type="text" placeholder="Username" name="username" />
-            <input type="text" placeholder="Student ID" name="studentid" />
+            <input type="email" placeholder="Email" name="email" />
+            <input type="number" placeholder="Student ID" name="studentid" />
             <input type="password" placeholder="Password" name="password" />
             <input type="password" placeholder="Confirm Password" name="confirm"/>
             <button type="submit">Register</button>
