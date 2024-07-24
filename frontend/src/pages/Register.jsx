@@ -21,7 +21,65 @@ export default () =>
     setFormData({ ...formData, [e.target.name]: e.target.value})
   }
 
-  const handleSubmit = async (e) => {}
+  const handleSubmit = async (e) => 
+  {
+    e.preventDefault()
+
+    const newErrors = {}
+
+    if(!formData.email)
+    {
+      newErrors.email = "Please enter your email"
+    }
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) 
+    {
+      newErrors.email = 'Please enter a valid email address.';
+    }
+    else if (!formData.email.endsWith("ashesi.edu.gh"))
+    {
+      newErrors.email = 'Please use your Ashesi email address.';
+    }
+    else {
+      try {
+        const response = await fetch('http://localhost/degree_audit/backend/actions/check_email.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ email: formData.email })
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to check email');
+        }
+
+        const data = await response.json();
+
+        if (data.status === 'error') 
+        {
+          newErrors.email = 'Email address is already in use.';
+        }
+      } catch (error) {
+        console.error('Error checking email:', error.message);
+        newErrors.email = 'Error checking email.';
+      }
+    }
+
+  if (!formData.studentid)
+  {
+    newErrors.studentid = "Please enter your student id"
+  }
+
+  if (!formData.password)
+  {
+    newErrors.password = "Please enter your password"
+  }
+
+  if (!formData.confirm)
+  {
+    newErrors.confirm = "Please confirm your password"
+  }
+}
 
   return (
     <div className="register-container">
