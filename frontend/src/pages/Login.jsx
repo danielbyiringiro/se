@@ -1,6 +1,6 @@
 import React from 'react';
 import './Register.css';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   return (

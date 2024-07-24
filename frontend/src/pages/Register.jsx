@@ -1,8 +1,28 @@
-import React from 'react';
 import './Register.css';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { useState } from 'react';
 
-const Register = () => {
+export default () => 
+{
+
+  const [formData, setFormData] = useState({
+    username: '',
+    studentid: '',
+    password: '',
+    confirm: ''
+  })
+
+  const history = useHistory();
+
+  const [errors, setErrors] = useState({});
+
+  const handleChange = (e) => 
+  {
+    setFormData({ ...formData, [e.target.name]: e.target.value})
+  }
+
+  const handleSubmit = async (e) => {}
+
   return (
     <div className="register-container">
       <div className="overlay">
@@ -13,10 +33,10 @@ const Register = () => {
         <div className="register-box">
           <h2>Register Now!</h2>
           <form>
-            <input type="text" placeholder="Username" />
-            <input type="text" placeholder="Student ID" />
-            <input type="password" placeholder="Password" />
-            <input type="password" placeholder="Confirm Password" />
+            <input type="text" placeholder="Username" name="username" />
+            <input type="text" placeholder="Student ID" name="studentid" />
+            <input type="password" placeholder="Password" name="password" />
+            <input type="password" placeholder="Confirm Password" name="confirm"/>
             <button type="submit">Register</button>
           </form>
           <p>
@@ -28,4 +48,3 @@ const Register = () => {
   );
 };
 
-export default Register;
