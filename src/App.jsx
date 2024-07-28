@@ -6,6 +6,7 @@ import About from './pages/About';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import TranscriptDashboard from './pages/Transcript_dashboard'
+import AppointmentDashboard  from './pages/Appointment';
 
 import './index.css';
 
@@ -21,6 +22,7 @@ const App = () => {
             <Route path="/register" element={<Register />} />
             <Route path="/dashboard" element={<Dashboard/>} />
             <Route path = "/transcript" element = {<TranscriptDashboard/>} />
+            <Route path = "/appointment" element = {<AppointmentDashboard/>} />
           </Routes>
         </main>
       </div>

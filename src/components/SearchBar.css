@@ -1,0 +1,11 @@
+.google-search-bar {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    background-color: white;
+  }
+  
+  .google-search-bar .MuiOutlinedInput-root {
+    border-radius: 100px;
+  }
+  

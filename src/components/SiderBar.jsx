@@ -15,7 +15,7 @@ const sidebar = () => {
         <li><Link to = '/transcript'><FaUpload /> Upload Transcript</Link></li>
         <li><FaClipboardList /> My Degree Audit</li>
         <li><FaChartLine /> Progress Report</li>
-        <li><FaCalendarAlt /> Schedule Appointment</li>
+        <li> <Link to = '/appointment'><FaCalendarAlt /> Schedule Appointment</Link></li>
         <li><FaBell /> Notifications</li>
         <li><FaCog /> Settings</li>
       </ul>
