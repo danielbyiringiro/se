@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
-import { TextField, Button, Select, MenuItem, FormControl, InputLabel, Paper, Grid, Typography } from '@mui/material';
-import SearchBar from './SearchBar'; 
-import './AppointmentScheduler.css';
-
+import './AppointmentScheduler.css'; 
 const advisors = [
   { id: 'ET', name: 'Emmanuel Ntow' },
-  { id: 'JN', name: 'Judercio Nhauche' },
+  { id: 'JN', name: 'Juderico Nhauche' },
   { id: 'VH', name: 'Vincent Hlanze' },
 ];
 
@@ -20,70 +17,48 @@ const timeSlots = [
 ];
 
 const AppointmentScheduler = () => {
-  const [selectedAdvisor, setSelectedAdvisor] = useState('');
+  const [selectedAdvisor, setSelectedAdvisor] = useState(null);
   const [reason, setReason] = useState('');
 
-  const handleAdvisorChange = (event) => {
-    setSelectedAdvisor(event.target.value);
-  };
-
-  const handleReasonChange = (event) => {
-    setReason(event.target.value);
-  };
-
-  const handleSearch = (query) => {
-    console.log('Search query:', query);
-  };
-
-  const handleSubmit = () => {
-    console.log('Advisor:', selectedAdvisor);
-    console.log('Reason:', reason);
-  };
-
   return (
-    <div className="main-content">
-      <SearchBar onSearch={handleSearch} />
-      <Paper className="appointment-scheduler" elevation={3}>
-        <Grid container spacing={3}>
-          <Grid item xs={12} md={6}>
-            <Typography variant="h6">Select Advisor</Typography>
-            <FormControl fullWidth variant="outlined">
-              <InputLabel>Advisor</InputLabel>
-              <Select value={selectedAdvisor} onChange={handleAdvisorChange} label="Advisor">
-                {advisors.map((advisor) => (
-                  <MenuItem key={advisor.id} value={advisor.name}>
-                    {advisor.name}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <Typography variant="h6">Choose Slot</Typography>
-            {timeSlots.map((slot, index) => (
-              <div key={index} className={`time-slot ${slot.slots === 'Unavailable' ? 'unavailable' : ''}`}>
-                {slot.day}: {slot.slots}
-              </div>
-            ))}
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              label="Reason for Appointment"
-              variant="outlined"
-              fullWidth
-              multiline
-              rows={4}
-              value={reason}
-              onChange={handleReasonChange}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <Button variant="contained" color="primary" onClick={handleSubmit}>
-              Continue
-            </Button>
-          </Grid>
-        </Grid>
-      </Paper>
+
+    <div className='main-content'>
+    <div className="appointment-scheduler">
+      <div className="advisor-selection">
+        <h3>Select Advisor</h3>
+        <input type="text" placeholder="Search Advisor" />
+        <ul>
+          {advisors.map(advisor => (
+            <li
+              key={advisor.id}
+              className={selectedAdvisor === advisor.id ? 'selected' : ''}
+              onClick={() => setSelectedAdvisor(advisor.id)}
+            >
+              <div className="advisor-icon">{advisor.id}</div>
+              <div className="advisor-name">{advisor.name}</div>
+            </li>
+          ))}
+        </ul>
+        <button className="continue-button">Continue</button>
+      </div>
+      <div className="slot-selection">
+        <h3>Choose Slot</h3>
+        <div className="time-slots">
+          {timeSlots.map((slot, index) => (
+            <div key={index} className="time-slot">
+              <span>{slot.day}</span>
+              <span>{slot.slots}</span>
+            </div>
+          ))}
+        </div>
+        <textarea
+          placeholder="Reason for Appointment"
+          value={reason}
+          onChange={e => setReason(e.target.value)}
+        />
+      </div>
+    </div>
+
     </div>
   );
 };
