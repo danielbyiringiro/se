@@ -1,5 +1,5 @@
 import './Register.css';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 export default () => 
@@ -10,26 +10,26 @@ export default () =>
     studentid: '',
     password: '',
     confirm: ''
-  })
+  });
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => 
   {
-    setFormData({ ...formData, [e.target.name]: e.target.value})
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   }
 
   const handleSubmit = async (e) => 
   {
-    e.preventDefault()
+    e.preventDefault();
 
-    const newErrors = {}
+    const newErrors = {};
 
     if(!formData.email)
     {
-      newErrors.email = "Please enter your email"
+      newErrors.email = "Please enter your email";
     }
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) 
     {
@@ -65,44 +65,74 @@ export default () =>
       }
     }
 
-  if (!formData.studentid)
-  {
-    newErrors.studentid = "Please enter your student id"
-  }
+    if (!formData.studentid)
+    {
+      newErrors.studentid = "Please enter your student id";
+    }
 
-  if (!formData.password)
-  {
-    newErrors.password = "Please enter your password"
-  }
+    if (!formData.password)
+    {
+      newErrors.password = "Please enter your password";
+    }
 
-  if (!formData.confirm)
-  {
-    newErrors.confirm = "Please confirm your password"
+    if (!formData.confirm)
+    {
+      newErrors.confirm = "Please confirm your password";
+    }
+
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length === 0) {
+      // Proceed with form submission or navigation
+      navigate('/some-path'); // Use navigate to redirect if needed
+    }
   }
-}
 
   return (
     <div className="register-container">
       <div className="overlay">
-        <div className = "welcome">
-             <h1>WELCOME TO ASHESI'S DEGREE PORTAL!</h1>
+        <div className="welcome">
+          <h1>WELCOME TO ASHESI'S DEGREE PORTAL!</h1>
         </div>
         
         <div className="register-box">
           <h2>Register Now!</h2>
-          <form>
-            <input type="email" placeholder="Email" name="email" />
-            <input type="number" placeholder="Student ID" name="studentid" />
-            <input type="password" placeholder="Password" name="password" />
-            <input type="password" placeholder="Confirm Password" name="confirm"/>
+          <form onSubmit={handleSubmit}>
+            <input 
+              type="email" 
+              placeholder="Email" 
+              name="email" 
+              value={formData.email} 
+              onChange={handleChange}
+            />
+            <input 
+              type="number" 
+              placeholder="Student ID" 
+              name="studentid" 
+              value={formData.studentid} 
+              onChange={handleChange}
+            />
+            <input 
+              type="password" 
+              placeholder="Password" 
+              name="password" 
+              value={formData.password} 
+              onChange={handleChange}
+            />
+            <input 
+              type="password" 
+              placeholder="Confirm Password" 
+              name="confirm" 
+              value={formData.confirm} 
+              onChange={handleChange}
+            />
             <button type="submit">Register</button>
           </form>
           <p>
-            Already have an account? <Link to="/login">Sign In</Link>
+            <routes>Already have an account? <Link to="/login">Sign In</Link></routes>
           </p>
         </div>
       </div>
     </div>
   );
 };
-

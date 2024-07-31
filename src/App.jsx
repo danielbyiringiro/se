@@ -1,14 +1,13 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import Home from './pages/Home';
-import Login from './pages/Login';
-import About from './pages/About';
-import Register from './pages/Register';
-import Dashboard from './pages/Dashboard';
-import TranscriptDashboard from './pages/Transcript_dashboard'
-import AppointmentDashboard  from './pages/Appointment';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from '../frontend/src/pages/Home';
+import Login from '../frontend/src/pages/Login';
+import About from '../frontend/src/pages/About';
+import Register from '../frontend/src/pages/Register';
+import Dashboard from '../frontend/src/pages/Dashboard';
+import TranscriptDashboard from '../frontend/src/pages/Transcript_dashboard';
+import AppointmentDashboard from '../frontend/src/pages/Appointment';
 
-import './index.css';
 
 const App = () => {
   return (
@@ -20,9 +19,9 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/about" element={<About />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/dashboard" element={<Dashboard/>} />
-            <Route path = "/transcript" element = {<TranscriptDashboard/>} />
-            <Route path = "/appointment" element = {<AppointmentDashboard/>} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/transcript" element={<TranscriptDashboard />} />
+            <Route path="/appointment" element={<AppointmentDashboard />} />
           </Routes>
         </main>
       </div>
@@ -31,3 +30,4 @@ const App = () => {
 };
 
 export default App;
+
