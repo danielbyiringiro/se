@@ -22,6 +22,38 @@ const MainContent = () => {
       <div className="courses">
         COURSES TO TAKE NEXT SEMESTER
       </div>
+
+      <div className="courses-next-semester">
+        <h2>Courses to Take Next Semester</h2>
+        <table className="courses-table">
+          <thead>
+            <tr>
+              <th className="course-name">Course Name</th>
+              <th className="department">Department</th>
+              <th className="credit">Credit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Written and Oral Communications</td>
+              <td>Humanities</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>Computer Programming</td>
+              <td>CSIS</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>Leadership 1</td>
+              <td>Humanities</td>
+              <td>1</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      
     </div>
   );
 };
