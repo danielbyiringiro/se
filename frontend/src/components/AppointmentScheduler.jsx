@@ -25,8 +25,10 @@ const AppointmentScheduler = () => {
     <div className='main-content'>
     <div className="appointment-scheduler">
       <div className="advisor-selection">
-        <h3>Select Advisor</h3>
-        <input type="text" placeholder="Search Advisor" />
+        <div class = "search">
+            <h3>Select Advisor</h3>
+            <input class= "input" type="text" placeholder="Search Advisor" />
+        </div>
         <ul>
           {advisors.map(advisor => (
             <li
@@ -51,11 +53,14 @@ const AppointmentScheduler = () => {
             </div>
           ))}
         </div>
+        <div>
+        <h3><i>Reason for Appointment<span class = "asterik">*</span></i></h3>
         <textarea
           placeholder="Reason for Appointment"
           value={reason}
           onChange={e => setReason(e.target.value)}
         />
+        </div>
       </div>
     </div>
 

@@ -8,14 +8,14 @@ const sidebar = () => {
   return (
     <div className="sidebar">
       <div className="sidebar-header">
-        ASHESI DEGREE AUDIT PORTAL
+        DEGREE AUDIT
       </div>
       <ul className="sidebar-menu">
-        <li><Link to = '/dashboard'><FaTachometerAlt /> Dashboard</Link></li>
-        <li><Link to = '/transcript'><FaUpload /> Upload Transcript</Link></li>
+        <li><Link className='custom-link' to = '/dashboard'><FaTachometerAlt /> Dashboard</Link></li>
+        <li><Link className='custom-link' to = '/transcript'><FaUpload /> Upload Transcript</Link></li>
         <li><FaClipboardList /> My Degree Audit</li>
         <li><FaChartLine /> Progress Report</li>
-        <li> <Link to = '/appointment'><FaCalendarAlt /> Schedule Appointment</Link></li>
+        <li> <Link className='custom-link' to = '/appointment'><FaCalendarAlt /> Schedule Appointment</Link></li>
         <li><FaBell /> Notifications</li>
         <li><FaCog /> Settings</li>
       </ul>

@@ -92,8 +92,10 @@
 
 .continue-button {
   width: 20%;
+  margin-top: 30vh;
+  margin-left: 40vw;
   padding: 10px;
-  background-color: #00796b;
+  background-color:#8c3d3d ;
   color: white;
   border: none;
   border-radius: 4px;
@@ -102,7 +104,7 @@
 }
 
 .continue-button:hover {
-  background-color: #004d40;
+  background-color:#8c3d3d ;
 }
 
 .time-slots {
@@ -127,5 +129,24 @@
   resize: vertical;
 }
 
+.asterik{
+  color:#8c3d3d;
+}
+
+.search{
+  margin-left: 30vw;
   
-  
+}
+
+.input {
+  width: 20px;
+  height: 40px; 
+  border-radius: 30px; 
+  border: 10px solid #ccc; 
+  padding: 0 15px;
+  outline: none; 
+  box-sizing: border-box; }
+
+.input:focus {
+  border-color: #8c3d3d; 
+}

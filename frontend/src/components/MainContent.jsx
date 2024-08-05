@@ -18,13 +18,18 @@ const MainContent = () => {
           <div className="stat-title">Courses Completed</div>
           <div className="stat-value">14</div>
         </div>
+
+        <div className="stat-item">
+          <div className="stat-title">Required</div>
+          <div className="stat-value">35.5</div>
+        </div>
       </div>
       <div className="courses">
         COURSES TO TAKE NEXT SEMESTER
       </div>
 
       <div className="courses-next-semester">
-        <h2>Courses to Take Next Semester</h2>
+  
         <table className="courses-table">
           <thead>
             <tr>

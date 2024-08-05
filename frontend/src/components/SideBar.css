@@ -7,14 +7,14 @@
     position: fixed;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: stretch
   }
   
   .sidebar-header {
     font-size: 18px;
     font-weight: bold;
     text-align: center;
-    padding: 20px 0;
+
   }
   
   .sidebar-menu {
@@ -27,6 +27,20 @@
     padding: 15px;
     display: flex;
     align-items: center;
+  }
+
+  .custom-link {
+    text-decoration: none; 
+    color: inherit; 
+  }
+  
+ 
+  .custom-link {
+    color:white; 
+  }
+  
+  .custom-link:hover {
+    color: #007bff; 
   }
   
   .sidebar-menu li:hover {
