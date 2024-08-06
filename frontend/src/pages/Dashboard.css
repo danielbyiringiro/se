@@ -5,3 +5,14 @@
     margin: 0;
     padding: 0;
   }
+
+  .main-content {
+    background-color: #d3d3d3 !important; 
+    margin-left: 40vw;
+    margin-top: 10vh;
+    padding: 0px;
+    width: 100vh;
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+  }

@@ -1,66 +1,38 @@
 
-.stats {
-    margin-left: -15vw;
-    display: flex;
-    justify-content: space-around;
-    width: 60vw;
-    margin-bottom: 50px;
-  }
-  
-.stat-item {
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    text-align: center;
-    width: 150px;
-  }
-  
-.stat-title {
-    font-size: 14px;
-    color: #8c3d3d;
-  }
-
-  
-.stat-value {
-    font-size: 24px;
-    font-weight: bold;
-  }
-  
 .courses {
     font-size: 18px;
   }
   
-
-  .courses-next-semester {
+.courses-next-semester {
     margin-left: -30vh;
     width: 60vw;
     padding: 20px;
     border-radius: 5px;
   }
   
-  .courses-next-semester h2 {
+.courses-next-semester h2 {
     margin-bottom: 20px;
   }
   
-  .courses-table {
+.courses-table {
     width: 100%;
     border-collapse: collapse;
   }
   
-  .courses-table th,
-  .courses-table td {
+.courses-table th,
+.courses-table td {
     border: 1px none #8c3d3d;
     padding: 8px;
     text-align: left;
   }
 
-  .courses-table tr {
+.courses-table tr {
     border: 1px solid #8c3d3d;
     padding: 8px;
     text-align: left;
   }
   
-  .courses-table th {
+.courses-table th {
     background-color: #8c3d3d;
     color: white;
     padding: 10px;

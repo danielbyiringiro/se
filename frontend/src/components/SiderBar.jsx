@@ -1,4 +1,4 @@
-// src/Sidebar.js
+
 import React from 'react';
 import './SideBar.css';
 import { FaUserGraduate,FaFileAlt,FaCalendarCheck, FaClipboard, FaFolder, FaTachometerAlt, FaUpload, FaClipboardList, FaChartLine, FaCalendarAlt, FaBell, FaCog, FaSignOutAlt } from 'react-icons/fa';
@@ -13,7 +13,7 @@ const sidebar = () => {
       </div>
       <ul className="sidebar-menu">
         <li><Link className='custom-link' to = '/dashboard'><FaTachometerAlt /> Dashboard</Link></li>
-        <li><Link className = 'custom-link'><FaUserGraduate/>Transcripts Management</Link></li>
+        <li><Link className = 'custom-link' to = '/manage'><FaUserGraduate/>Transcripts Management</Link></li>
         <li><Link className = 'custom-link'><FaFileAlt/>Student Progress Tracking</Link></li>
         <li><Link className='custom-link' to = '/transcript'><FaUpload /> Upload Transcript</Link></li>
         <li><FaClipboardList /> My Degree Audit</li>

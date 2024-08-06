@@ -1,15 +1,15 @@
 import React from 'react';
 import Sidebar from '../components/SiderBar';
-import UploadTranscript from '../components/UploadTranscript';
+import TranscriptManagement from '../components/TranscriptManagement';
 import './Dashboard.css';
 
-const dashboard =()=>{
+const ManageTranscript =()=>{
   return (
     <div className="dashboard">
       <Sidebar />
-      <UploadTranscript/>
+      <TranscriptManagement/>
     </div>
   );
 }
 
-export default dashboard;
+export default ManageTranscript;

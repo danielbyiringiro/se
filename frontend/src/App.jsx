@@ -7,6 +7,7 @@ import Register from '../../frontend/src/pages/Register';
 import Dashboard from '../../frontend/src/pages/Dashboard';
 import TranscriptDashboard from '../../frontend/src/pages/Transcript_dashboard';
 import AppointmentDashboard from '../../frontend/src/pages/Appointment';
+import TranscriptManagement from '../../frontend/src/pages/ManageTranscript';
 import './index.css';
 
 
@@ -23,6 +24,8 @@ const App = () => {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/transcript" element={<TranscriptDashboard />} />
             <Route path="/appointment" element={<AppointmentDashboard />} />
+            <Route path="/manage" element={<TranscriptManagement/>} />
+
           </Routes>
         </main>
       </div>
