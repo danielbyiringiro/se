@@ -14,10 +14,7 @@ const sidebar = () => {
       <ul className="sidebar-menu">
         <li><Link className='custom-link' to = '/dashboard'><FaTachometerAlt /> Dashboard</Link></li>
         <li><Link className = 'custom-link' to = '/manage'><FaUserGraduate/>Transcripts Management</Link></li>
-        <li><Link className = 'custom-link'><FaFileAlt/>Student Progress Tracking</Link></li>
         <li><Link className='custom-link' to = '/transcript'><FaUpload /> Upload Transcript</Link></li>
-        <li><FaClipboardList /> My Degree Audit</li>
-        <li><FaChartLine /> Progress Report</li>
         <li> <Link className='custom-link' to = '/appointment'><FaCalendarCheck /> My Appointments</Link></li>
         <li> <Link className='custom-link' to = '/appointment'><FaCalendarAlt /> Schedule Appointment</Link></li>
         <li><FaBell /> Notifications</li>
