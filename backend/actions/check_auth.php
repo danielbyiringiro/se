@@ -10,8 +10,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
     $email = $input['email'];
     $code = $input['authcode'];
+    $password = $input['password'];
 
-    $sql = "SELECT auth_code FROM STUDENT WHERE email = ?";
+    $sql = "SELECT * FROM STUDENT WHERE email = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $email); // Execute the prepared statement with parameter binding
 
@@ -20,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         $row = $stmt->get_result()->fetch_assoc();
         if ($row)
         {
-            if ($row['auth_code'] == $code)
+            if ($row['AUTH_CODE'] == $code && password_verify($password, $row['PASSWORD']))
             {
                 $auth_code = $row['auth_code'];
                 $sql = "UPDATE STUDENT SET status = 1 WHERE email = ?";
@@ -34,13 +35,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                 }
                 else
                 {
-                    echo json_encode(array('status' => 'success', 'auth_code' => $auth_code));
+                    echo json_encode(array('status' => 'success', 'result' => $row));
                     exit;
                 }
             }
             else
             {
-                echo json_encode(array('status' => 'error', 'message' => 'Invalid code'));
+                echo json_encode(array('status' => 'error', 'message' => $row['AUTH_CODE'] == $code,  'event' => $row,'hash_the_password' => password_verify($password, $row['PASSWORD'])));
             }
         }
         else

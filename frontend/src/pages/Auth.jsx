@@ -7,7 +7,8 @@ export default () =>
 
   const [formData, setFormData] = useState({
     email: '',
-    authcode: ''
+    authcode: '',
+    password: ''
   });
 
   const navigate = useNavigate();
@@ -24,6 +25,11 @@ export default () =>
     e.preventDefault();
 
     const newErrors = {};
+
+    if(!formData.password)
+    {
+      newErrors.password = "Please enter your password";
+    }
 
     if(!formData.email)
     {
@@ -94,16 +100,25 @@ export default () =>
       const data = await response.json();
       if (data.status === 'success') 
       {
+        sessionStorage.setItem('isLoggedIn', 'true');
+        sessionStorage.setItem('year', data.result['YEAR']);
+        sessionStorage.setItem('id', data.result['ID']);
+        sessionStorage.setItem('email', data.result['EMAIL']);
+        sessionStorage.setItem('name', data.result['NAME']);
+        sessionStorage.setItem('major', data.result['MAJOR']);
         navigate("/")
       } 
       else 
       {
+        console.log(data);
         newErrors.authcode = "Invalid code"
-        setErrors({ form: 'Auth failed. Please try again.' });
+        setErrors(newErrors);
       }
     } 
     catch (error) 
     {
+      newErrors.password = error.message;
+      setErrors(newErrors);
       console.error('Error submitting form data:', error.message);
     }
   }
@@ -139,6 +154,16 @@ export default () =>
               className={`text-black ${errors.authcode ? 'input-error shake' : ''}`}
             />
             {errors.authcode && <div className="error-message">{errors.authcode}</div>}
+            <input 
+              type="password" 
+              placeholder="Password" 
+              name="password" 
+              id="password"
+              value={formData.password} 
+              onChange={handleChange}
+              className={`text-black ${errors.password ? 'input-error shake' : ''}`}
+            />
+            {errors.password && <div className="error-message">{errors.password}</div>}
             <button type="submit">Authenticate</button>
           </form>
         </div>

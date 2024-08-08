@@ -53,9 +53,9 @@ export default () =>
 
         const data = await response.json();
 
-        if (data.status === 'success') 
+        if (data.status === 'error') 
         {
-          newErrors.email = 'Email address is already in use.';
+          newErrors.email = 'Email address is not registered sign up.';
         }
       } catch (error) {
         console.error('Error checking email:', error.message);
@@ -95,15 +95,18 @@ export default () =>
       if (data.status === 'success') 
       {
         sessionStorage.setItem('isLoggedIn', 'true');
-        sessionStorage.setItem('studentid', data.user_data['USER_ID']);
-        sessionStorage.setItem('id', data.user_data['ID']);
-        sessionStorage.setItem('email', data.user_data['EMAIL']);
+        sessionStorage.setItem('year', data.result['YEAR']);
+        sessionStorage.setItem('id', data.result['ID']);
+        sessionStorage.setItem('email', data.result['EMAIL']);
+        sessionStorage.setItem('name', data.result['NAME']);
+        sessionStorage.setItem('major', data.result['MAJOR']);
         navigate("/")
       } 
       else 
       {
+        newErrors.password = data.message;
+        setErrors(newErrors);
         console.log(data.message)
-        setErrors({ form: 'Login failed. Please try again.' });
       }
     } 
     catch (error) 

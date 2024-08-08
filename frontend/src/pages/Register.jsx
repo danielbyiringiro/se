@@ -8,9 +8,11 @@ export default () =>
 
   const [formData, setFormData] = useState({
     email: '',
-    studentid: '',
+    year: '',
     password: '',
-    confirm: ''
+    confirm: '',
+    name: '',
+    major: 'select'
   });
 
   const navigate = useNavigate();
@@ -27,6 +29,11 @@ export default () =>
     e.preventDefault();
 
     const newErrors = {};
+
+    if(!formData.name)
+    {
+      newErrors.name = "Please enter your name";
+    }
 
     if(!formData.email)
     {
@@ -66,13 +73,13 @@ export default () =>
       }
     }
 
-    if (!formData.studentid)
+    if (!formData.year)
     {
-      newErrors.studentid = "Please enter your student id";
+      newErrors.year = "Please enter your year group";
     }
-    else if(formData.studentid.length < 8)
+    else if(formData.year.length < 4)
     {
-      newErrors.studentid = "Student ID can not be less than 8 characters"
+      newErrors.year = "Year Group can not be less than 4 numbers"
     }
 
     if (!formData.password)
@@ -83,6 +90,10 @@ export default () =>
     if (!formData.confirm)
     {
       newErrors.confirm = "Please confirm your password";
+    }
+    if (formData.major === 'select')
+    {
+      newErrors.major = "Please select your major"
     }
 
     if (Object.keys(newErrors).length > 0) {
@@ -115,7 +126,7 @@ export default () =>
       } 
       else 
       {
-        console.log(data.message)
+        console.log(`message from the server: ${data.message}`)
         setErrors({ form: 'Signup failed. Please try again.' });
       }
     } 
@@ -136,6 +147,16 @@ export default () =>
         <div className="register-box">
           <h2>Register Now!</h2>
           <form onSubmit={handleSubmit}>
+          <input 
+              type="text" 
+              placeholder="Name" 
+              name="name" 
+              id="name"
+              value={formData.name} 
+              onChange={handleChange}
+              className={`text-black ${errors.name ? 'input-error shake' : ''}`}
+            />
+            {errors.name && <div className="error-message">{errors.name}</div>}
             <input 
               type="email" 
               placeholder="Email" 
@@ -148,14 +169,31 @@ export default () =>
             {errors.email && <div className="error-message">{errors.email}</div>}
             <input 
               type="number" 
-              placeholder="Student ID" 
-              name="studentid" 
+              placeholder="Year Group" 
+              name="year" 
               id="student_id"
-              value={formData.studentid} 
+              value={formData.year} 
               onChange={handleChange}
-              className={`text-black ${errors.studentid ? 'input-error shake' : ''}`}
+              className={`text-black ${errors.year ? 'input-error shake' : ''}`}
             />
-            {errors.studentid && <div className="error-message">{errors.studentid}</div>}
+            {errors.year && <div className="error-message">{errors.year}</div>}
+            <select
+              name="major"
+              id="major"
+              value={formData.major}
+              onChange={handleChange}
+              className={`bg-red-500 border-8 rounded-md border-solid text-white mt-2 mb-2 ${errors.major ? 'input-error shake' : ''}`}
+            >
+              <option disabled value="select">Major</option>
+              <option value="ba">Business Administration</option>
+              <option value="cs">Computer Science</option>
+              <option value="me">Mechanical Engineering</option>
+              <option value="mis">Management Information Science</option>
+              <option value="mec">Mechatronics Engineering</option>
+              <option value="ce">Computer Engineering</option>
+              <option value="eee">Electrical and Electronics Engineering</option>
+            </select>
+            {errors.major && <div className="error-message">{errors.major}</div>}
             <input 
               type="password" 
               placeholder="Password" 

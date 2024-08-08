@@ -5,7 +5,8 @@ const MainContent = () => {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [completed, setCompleted] = useState(0) 
+  const [completedCredits, setCompletedCredits] = useState(0);
+  const [completionRate, setCompletionRate] = useState(0);
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -29,7 +30,11 @@ const MainContent = () => {
         if (data.error) {
           throw new Error(data.error);
         }
-        setCompleted(data.courses.length)
+        const totalCredits = data.courses.reduce((sum, course) => sum + course.UNITS, 0);
+        const totalRequiredCredits = 33.5; // Assuming this is the total required credits
+        
+        setCompletedCredits(totalCredits);
+        setCompletionRate(((totalCredits / totalRequiredCredits) * 100).toFixed(2));
         setCourses(data.courses);
       } catch (error) {
         setError(error.message);
@@ -49,24 +54,29 @@ const MainContent = () => {
       <div className="stats">
         <div className="stat-item">
           <div className="stat-title">Progress Report</div>
-          <div className="stat-value">63%</div>
+          <div className="stat-value">{completionRate}%</div>
         </div>
         <div className="stat-item">
           <div className="stat-title">Credits</div>
-          <div className="stat-value">22/33.5</div>
+          <div className="stat-value">{completedCredits}/33.5</div>
         </div>
-        <div className="stat-item text-nowrap">
+        <div className="stat-item whitespace-nowrap w-auto">
           <div className="stat-title">Courses Completed</div>
-          <div className="stat-value">{completed}</div>
+          <div className="stat-value">{courses.length}</div>
         </div>
 
         <div className="stat-item">
           <div className="stat-title">Required</div>
-          <div className="stat-value">35.5</div>
+          <div className="stat-value">34.5</div>
         </div>
       </div>
+      <div className='flex justify-between gap-4'>
+        <h1 className='text-red-500 font-semibold'>{sessionStorage.getItem("name")}</h1>
+        <h1 className='text-red-500 font-semibold'>{sessionStorage.getItem("year")}</h1>
+        <h1 className='text-red-500 font-semibold'>Computer Science</h1>
+      </div>
       <div className="courses">
-        COURSES TO TAKE NEXT SEMESTER
+        COURSES TAKEN SO FAR
       </div>
 
       <div className="courses-next-semester max-h-96 overflow-y-auto overflow-x-hidden">

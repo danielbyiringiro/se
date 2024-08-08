@@ -8,6 +8,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Decode JSON input
     $input = json_decode(file_get_contents('php://input'), true);
     $email = $input['email'];
+    $year = $input['year'];
+    $major = $input['major'];
+    $name = $input['name'];
     $student_id = $input['studentid'];
     $password = $input['password'];
     $confirm_password = $input['confirm'];
@@ -15,9 +18,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    $sql = "INSERT INTO STUDENT (email, student_id, password, auth_code) VALUES (?, ?, ?, ?)";
+    $sql = "INSERT INTO STUDENT (email, name, year, major, password, auth_code) VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sisi", $email, $student_id, $hashed_password, $code); // Execute the prepared statement with parameter binding
+    $stmt->bind_param("sssisi", $email, $name, $year, $major, $hashed_password, $code); // Execute the prepared statement with parameter binding
 
     if (!$stmt->execute()) 
     {

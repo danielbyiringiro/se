@@ -52,9 +52,9 @@ export default () =>
       console.log('Response data:', data);
       if (data.status === 'success') {
         const parsedCourses = data.results.courses.map(course => ({
-          name: course[0] || '',
-          grade: course[1] || '',
-          units: parseFloat(course[2]) || 0
+          name: course['course_name'] || '',
+          grade: course['course_grade'] || '',
+          units: parseFloat(course['course_unit']) || 0
         }));
 
         setCourses(parsedCourses);
