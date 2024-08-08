@@ -1,0 +1,190 @@
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "./dialog";
+import { Loader2, Plus } from "lucide-react";
+import { Button } from "./button";
+import { useState } from "react";
+
+export default function UploadTranscriptDialog() {
+  const [file, setFile] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [courses, setCourses] = useState([]);
+  const [saving, setSaving] = useState([false])
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    if (!file) {
+      return;
+    }
+    setLoading(true);
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('id', sessionStorage.getItem('id'));
+
+      const response = await fetch("https://aimidserm.pythonanywhere.com/", {
+        method: 'POST',
+        body: formData
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit form data for login');
+      }
+      const data = await response.json();
+      console.log('Response data:', data);
+      if (data.status === 'success') {
+        const parsedCourses = data.results.queries.map(query => {
+          const match = query.match(/VALUES \(\d+, '(.+)', '(.+)', (\d+)\)/);
+
+          if (match) {
+            return {
+              name: match[1] || '',     // Use empty string if null
+              grade: match[2] || '',    // Use empty string if null
+              units: parseInt(match[3], 10) || 0, // Use 0 if null
+            };
+          } else {
+            // Handle cases where match is null
+            return {
+              name: '',  // Default to empty string if parsing fails
+              grade: '', // Default to empty string if parsing fails
+              units: 0   // Default to 0 if parsing fails
+            };
+          }
+        });
+        setCourses(parsedCourses);
+      } else {
+        alert(data.results);
+      }
+    } catch (error) {
+      console.error('Error submitting form data:', error.message);
+    } finally {
+      setLoading(false); // Stop loading
+    }
+  };
+
+  const handleEditChange = (index, field, value) => {
+    const updatedCourses = [...courses];
+    updatedCourses[index][field] = value;
+    setCourses(updatedCourses);
+  };
+
+  const handleSave = () => {
+    setSaving(true)
+    const sqlQueries = courses.map((course) => {
+      // Ensure SQL query is properly formatted
+      return `INSERT INTO courses (studentid, name, grade, units) VALUES ('${sessionStorage.getItem('id')}', '${course.name}', '${course.grade}', ${course.units});`;
+    });
+
+  };
+
+  return (
+    <Dialog>
+      <DialogTrigger>
+        {!courses.length && ( // Condition to hide the Upload button
+          <div className="border-dashed border-2 flex border-green-600 h-full rounded-lg items-center justify-center sm:flex-col hover:shadow-xl transition hover:-translate-y-1 flex-row p-4">
+            <Plus className="w-6 h-6 text-green-600" strokeWidth={3} />
+            <h2 className="font-semibold text-green-600 sm:mt-2">
+              Upload Transcript
+            </h2>
+          </div>
+        )}
+      </DialogTrigger>
+      <DialogContent className="bg-white p-6 rounded-lg max-w-4xl max-h-[80vh] overflow-auto">
+        <DialogHeader>
+          <DialogTitle>Upload Transcript</DialogTitle>
+          <DialogDescription>
+            You can upload your transcript by clicking the button below.
+          </DialogDescription>
+        </DialogHeader>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="file"
+            onChange={(e) => setFile(e.target.files[0])}
+            placeholder="Select file..."
+            className="block w-full text-sm text-gray-500
+            file:mr-4 file:py-2 file:px-4
+            file:rounded-full file:border-0
+            file:text-sm file:font-semibold
+            file:bg-green-50 file:text-green-700
+            hover:file:bg-green-100"
+            autoComplete="off"
+          />
+          <div className="h-4"></div>
+          <div className="flex items-center gap-2">
+            <Button
+              type="submit"
+              className="bg-green-600 text-white"
+              disabled={loading}
+            >
+              {loading && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
+              Upload
+            </Button>
+          </div>
+        </form>
+        {courses.length > 0 && (
+          <div className="mt-6 overflow-x-auto">
+            <h3 className="text-lg font-semibold">Extracted Courses:</h3>
+            <div className="max-h-[60vh] overflow-y-auto">
+            <table className="min-w-full divide-y divide-gray-200 bg-white border">
+              <thead>
+                <tr>
+                  <th className="py-2 px-4 border flex-1">Course</th>
+                  <th className="py-2 px-4 border">Grade</th>
+                  <th className="py-2 px-4 border">Units</th>
+                </tr>
+              </thead>
+              <tbody className="bg-white divide-y divide-gray-200">
+                {courses.map((course, index) => (
+                  <tr key={index}>
+                    <td className="py-2 px-4 whitespace-nowrap text-sm font-medium text-gray-900 border flex-1">
+                      <input
+                        type="text"
+                        value={course.name || ''}
+                        onChange={(e) => handleEditChange(index, 'name', e.target.value)}
+                        className="w-full px-2 py-1 border rounded"
+                        style={{ whiteSpace: 'normal' }}
+                      />
+                    </td>
+                    <td className="py-2 px-4 whitespace-nowrap text-sm font-medium text-gray-900 border">
+                      <input
+                        type="text"
+                        value={course.grade || ''}
+                        onChange={(e) => handleEditChange(index, 'grade', e.target.value)}
+                        className="w-full px-2 py-1 border rounded"
+                      />
+                    </td>
+                    <td className="py-2 px-4 whitespace-nowrap text-sm font-medium text-gray-900 border">
+                      <input
+                        type="number"
+                        value={course.units || ''}
+                        onChange={(e) => handleEditChange(index, 'units', e.target.value)}
+                        className="w-full px-2 py-1 border rounded"
+                      />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            </div>
+            <div className="mt-4 flex justify-end">
+              <Button
+                onClick={handleSave}
+                className="bg-green-600 text-white"
+                disabled={saving}
+              >
+                {saving && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
+                Save
+              </Button>
+            </div>
+          </div>
+        )}
+      </DialogContent>
+    </Dialog>
+  );
+}

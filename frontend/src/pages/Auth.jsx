@@ -1,5 +1,5 @@
 import './Register.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 export default () => 
@@ -7,9 +7,7 @@ export default () =>
 
   const [formData, setFormData] = useState({
     email: '',
-    studentid: '',
-    password: '',
-    confirm: ''
+    authcode: ''
   });
 
   const navigate = useNavigate();
@@ -55,7 +53,7 @@ export default () =>
 
         const data = await response.json();
 
-        if (data.status === 'error') 
+        if (data.status === 'success') 
         {
           newErrors.email = 'Email address is already in use.';
         }
@@ -65,23 +63,9 @@ export default () =>
       }
     }
 
-    if (!formData.studentid)
+    if (!formData.authcode)
     {
-      newErrors.studentid = "Please enter your student id";
-    }
-    else if(formData.studentid.length < 8)
-    {
-      newErrors.studentid = "Student ID can not be less than 8 characters"
-    }
-
-    if (!formData.password)
-    {
-      newErrors.password = "Please enter your password";
-    }
-
-    if (!formData.confirm)
-    {
-      newErrors.confirm = "Please confirm your password";
+      newErrors.authcode = "Please enter your authentication code";
     }
 
     if (Object.keys(newErrors).length > 0) {
@@ -91,7 +75,7 @@ export default () =>
 
     try 
     {
-      const response = await fetch('http://localhost/degree_audit/backend/actions/register.php', 
+      const response = await fetch('http://localhost/degree_audit/backend/actions/check_auth.php', 
       {
         method: 'POST',
         headers: 
@@ -101,21 +85,21 @@ export default () =>
         body: JSON.stringify(formData)
       });
 
+
       if (!response.ok) 
       {
-        throw new Error('Failed to submit form data for signup');
+        throw new Error('Failed to submit form data for auth');
       }
 
       const data = await response.json();
       if (data.status === 'success') 
       {
-        setErrors({});
-        navigate('/auth');
+        navigate("/")
       } 
       else 
       {
-        console.log(data.message)
-        setErrors({ form: 'Signup failed. Please try again.' });
+        newErrors.authcode = "Invalid code"
+        setErrors({ form: 'Auth failed. Please try again.' });
       }
     } 
     catch (error) 
@@ -129,11 +113,11 @@ export default () =>
     <div className="register-container">
       <div className="overlay">
         <div className="welcome">
-          <h1>WELCOME TO ASHESI'S DEGREE PORTAL!</h1>
+          <h1>Authentication Portal</h1>
         </div>
         
         <div className="register-box">
-          <h2>Register Now!</h2>
+          <h2>Authenticate Now!</h2>
           <form onSubmit={handleSubmit}>
             <input 
               type="email" 
@@ -147,39 +131,16 @@ export default () =>
             {errors.email && <div className="error-message">{errors.email}</div>}
             <input 
               type="number" 
-              placeholder="Student ID" 
-              name="studentid" 
-              id="student_id"
-              value={formData.studentid} 
+              placeholder="Authentication Code" 
+              name="authcode" 
+              id="authcode"
+              value={formData.authcode} 
               onChange={handleChange}
-              className={errors.studentid ? 'input-error shake' : ''}
+              className={errors.authcode ? 'input-error shake' : ''}
             />
-            {errors.studentid && <div className="error-message">{errors.studentid}</div>}
-            <input 
-              type="password" 
-              placeholder="Password" 
-              name="password" 
-              id="password"
-              value={formData.password} 
-              onChange={handleChange}
-              className={errors.password ? 'input-error shake' : ''}
-            />
-            {errors.password && <div className="error-message">{errors.password}</div>}
-            <input 
-              type="password" 
-              placeholder="Confirm Password" 
-              name="confirm" 
-              id="confirm"
-              value={formData.confirm} 
-              onChange={handleChange}
-              className={errors.confirm ? 'input-error shake' : ''}
-            />
-            {errors.confirm && <div className="error-message">{errors.confirm}</div>}
-            <button type="submit">Register</button>
+            {errors.authcode && <div className="error-message">{errors.authcode}</div>}
+            <button type="submit">Authenticate</button>
           </form>
-          <p>
-            Already have an account? <Link to="/login">Sign In</Link>
-          </p>
         </div>
       </div>
     </div>

@@ -1,25 +1,39 @@
 // src/Sidebar.js
 import React from 'react';
 import './SideBar.css';
-import { FaTachometerAlt, FaUpload, FaClipboardList, FaChartLine, FaCalendarAlt, FaBell, FaCog, FaSignOutAlt } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { FaUserGraduate,FaFileAlt,FaCalendarCheck, FaClipboard, FaFolder, FaTachometerAlt, FaUpload, FaClipboardList, FaChartLine, FaCalendarAlt, FaBell, FaCog, FaSignOutAlt } from 'react-icons/fa';
+
+import { Link, useNavigate } from 'react-router-dom';
 
 const sidebar = () => {
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    sessionStorage.setItem('isLoggedIn', '');
+    sessionStorage.setItem('studentid', '');
+    sessionStorage.setItem('id', '');
+    sessionStorage.setItem('email', '');
+    navigate('/login'); 
+  };
   return (
     <div className="sidebar">
       <div className="sidebar-header">
-        ASHESI DEGREE AUDIT PORTAL
+        DEGREE AUDIT
       </div>
       <ul className="sidebar-menu">
-        <li><Link to = '/dashboard'><FaTachometerAlt /> Dashboard</Link></li>
-        <li><Link to = '/transcript'><FaUpload /> Upload Transcript</Link></li>
+        <li><Link className='custom-link' to = '/dashboard'><FaTachometerAlt /> Dashboard</Link></li>
+        <li><Link className = 'custom-link'><FaUserGraduate/>Transcripts Management</Link></li>
+        <li><Link className = 'custom-link'><FaFileAlt/>Student Progress Tracking</Link></li>
+        <li><Link className='custom-link' to = '/transcript'><FaUpload /> Upload Transcript</Link></li>
         <li><FaClipboardList /> My Degree Audit</li>
         <li><FaChartLine /> Progress Report</li>
-        <li><FaCalendarAlt /> Schedule Appointment</li>
+        <li> <Link className='custom-link' to = '/appointment'><FaCalendarCheck /> My Appointments</Link></li>
+        <li> <Link className='custom-link' to = '/appointment'><FaCalendarAlt /> Schedule Appointment</Link></li>
         <li><FaBell /> Notifications</li>
         <li><FaCog /> Settings</li>
       </ul>
-      <div className="sidebar-logout">
+      <div className="sidebar-logout" onClick={handleLogout}>
         <FaSignOutAlt /> Logout
       </div>
     </div>

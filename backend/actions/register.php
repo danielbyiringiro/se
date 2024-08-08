@@ -8,9 +8,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Decode JSON input
     $input = json_decode(file_get_contents('php://input'), true);
     $email = $input['email'];
-    $student_id = $input['student_id'];
+    $student_id = $input['studentid'];
     $password = $input['password'];
-    $confirm_password = $input['confirm_password'];
+    $confirm_password = $input['confirm'];
     $code = rand(10000, 99999);
 
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
@@ -21,7 +21,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!$stmt->execute()) 
     {
-        echo json_encode(array('status' => 'error', 'message' => 'Error executing query' . $conn->error));
+        $error_message = sprintf(
+            'Error executing query: %s | Email: %s | Student ID: %s | Password: %s | Confirm Password: %s',
+            $stmt->error, // Using $stmt->error for more specific error message from the statement execution
+            htmlspecialchars($email), // Sanitize input for security
+            htmlspecialchars($student_id),
+            htmlspecialchars($password),
+            htmlspecialchars($confirm_password)
+        );
+        
+        echo json_encode(array('status' => 'error', 'message' => $error_message));
         exit;
     }
     else

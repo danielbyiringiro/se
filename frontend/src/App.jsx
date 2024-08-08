@@ -1,33 +1,57 @@
-import React from 'react';
-import { BrowserRouter as Router, Route} from 'react-router-dom';
-import Home from './pages/Home';
-import Login from './pages/Login';
-import About from './pages/About';
-import Register from './pages/Register';
-import Dashboard from './pages/Dashboard';
-import TranscriptDashboard from './pages/Transcript_dashboard'
-
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import Login from '../../frontend/src/pages/Login';
+import About from '../../frontend/src/pages/About';
+import Register from '../../frontend/src/pages/Register';
+import Auth from '../../frontend/src/pages/Auth';
+import Dashboard from '../../frontend/src/pages/Dashboard';
+import TranscriptDashboard from '../../frontend/src/pages/Transcript_dashboard';
+import AppointmentDashboard from '../../frontend/src/pages/Appointment';
 import './index.css';
 
-export default () => 
-{
-  return (
-    <Router>
-      <Routes />
-    </Router>
-  )
-}
+const App = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-const Routes = () =>
-{
-  return (
-    <>
-      <Route path="/" exact><Home /> </Route>
-      <Route path="/login"><Login /> </Route>
-      <Route path="/register"><Register /></Route>
-      <Route path="/dashboard"><Dashboard/></Route>
-      <Route path = "/transcript"><TranscriptDashboard/></Route>
-    </>
-  )
-}
+  useEffect(() => {
+    const loggedInStatus = sessionStorage.getItem('isLoggedIn');
+    setIsAuthenticated(loggedInStatus === 'true');
+  }, []);
 
+  return (
+    <div>
+      <main>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/auth" element={<Auth />} />
+
+          {/* Protected Routes */}
+          <Route
+            path="/"
+            element={isAuthenticated ? <Dashboard /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/transcript"
+            element={isAuthenticated ? <TranscriptDashboard /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/appointment"
+            element={isAuthenticated ? <AppointmentDashboard /> : <Navigate to="/login" />}
+          />
+
+          {/* Redirect to home if no match */}
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </main>
+    </div>
+  );
+};
+
+const AppWrapper = () => (
+  <Router>
+    <App />
+  </Router>
+);
+
+export default AppWrapper;

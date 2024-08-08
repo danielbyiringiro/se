@@ -10,10 +10,7 @@ const dashboard =()=>{
   return (
     <div className="dashboard">
       <Sidebar />
-      < MainContent />
-
-      
-      
+      < MainContent/>
     </div>
   );
 }

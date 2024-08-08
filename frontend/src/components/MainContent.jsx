@@ -18,10 +18,47 @@ const MainContent = () => {
           <div className="stat-title">Courses Completed</div>
           <div className="stat-value">14</div>
         </div>
+
+        <div className="stat-item">
+          <div className="stat-title">Required</div>
+          <div className="stat-value">35.5</div>
+        </div>
       </div>
       <div className="courses">
         COURSES TO TAKE NEXT SEMESTER
       </div>
+
+      <div className="courses-next-semester">
+  
+        <table className="courses-table">
+          <thead>
+            <tr>
+              <th className="course-name">Course Name</th>
+              <th className="department">Department</th>
+              <th className="credit">Credit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Written and Oral Communications</td>
+              <td>Humanities</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>Computer Programming</td>
+              <td>CSIS</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>Leadership 1</td>
+              <td>Humanities</td>
+              <td>1</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      
     </div>
   );
 };
