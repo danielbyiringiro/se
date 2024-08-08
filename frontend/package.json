@@ -8,9 +8,9 @@
         "build": "vite build",
         "preview": "vite preview",
         "predeploy": "npm run build",
-        "deploy": "gh-pages -d dist"
+        "deploy": "gh-pages -d dist -r https://github.com/EddyKubwimana/Degree_audit.git"
     },
-    "homepage": "http://EddyKubwimana.github.io/Degree_audit",
+    "repo": "http://EddyKubwimana.github.io/Degree_audit",
     "dependencies": {
         "@emotion/react": "^11.13.0",
         "@emotion/styled": "^11.13.0",
