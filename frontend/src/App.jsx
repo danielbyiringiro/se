@@ -9,6 +9,7 @@ import TranscriptDashboard from '../../frontend/src/pages/Transcript_dashboard';
 import AppointmentDashboard from '../../frontend/src/pages/Appointment';
 import TranscriptManagement from '../../frontend/src/pages/ManageTranscript';
 import UserSettings from '../../frontend/src/pages/UserSettings';
+import UserNotifications from './pages/userNotifications';
 
 import './index.css';
 
@@ -27,6 +28,7 @@ const App = () => {
             <Route path="/transcript" element={<TranscriptDashboard />} />
             <Route path="/appointment" element={<AppointmentDashboard />} />
             <Route path="/manage" element={<TranscriptManagement/>} />
+            <Route path = "/notification" element ={<UserNotifications/>}/>
             <Route path = "/setting" element ={<UserSettings/>}/>
 
           </Routes>

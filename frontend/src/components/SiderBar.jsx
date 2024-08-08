@@ -17,7 +17,7 @@ const sidebar = () => {
         <li><Link className='custom-link' to = '/transcript'><FaUpload /> Upload Transcript</Link></li>
         <li> <Link className='custom-link' to = '/appointment'><FaCalendarCheck /> My Appointments</Link></li>
         <li> <Link className='custom-link' to = '/appointment'><FaCalendarAlt /> Schedule Appointment</Link></li>
-        <li><FaBell /> Notifications</li>
+        <li><Link className='custom-link' to = '/notification'><FaBell /> Notifications</Link></li>
         <li><Link className='custom-link' to = '/setting'><FaCog />  Settings</Link></li>
       </ul>
       <div className="sidebar-logout">
