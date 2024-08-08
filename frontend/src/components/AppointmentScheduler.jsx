@@ -25,7 +25,7 @@ const AppointmentScheduler = () => {
     <div className='main-content'>
     <div className="appointment-scheduler">
       <div className="advisor-selection">
-        <div class = "search">
+        <div className = "search">
             <h3>Select Advisor</h3>
             <input class= "input" type="text" placeholder="Search Advisor" />
         </div>

@@ -7,6 +7,9 @@ import Auth from '../../frontend/src/pages/Auth';
 import Dashboard from '../../frontend/src/pages/Dashboard';
 import TranscriptDashboard from '../../frontend/src/pages/Transcript_dashboard';
 import AppointmentDashboard from '../../frontend/src/pages/Appointment';
+import UserNotifications from '../../frontend/src/pages/userNotifications'
+import TranscriptManagement from '../../frontend/src/pages/ManageTranscript'
+import UserSettings from '../../frontend/src/pages/UserSettings'
 import './index.css';
 
 const App = () => {

@@ -130,7 +130,7 @@ export default () =>
               id="email"
               value={formData.email} 
               onChange={handleChange}
-              className={errors.email ? 'input-error shake' : ''}
+              className={`text-black ${errors.email ? 'input-error shake' : ''}`}
             />
             {errors.email && <div className="error-message">{errors.email}</div>}
             <input 
@@ -140,7 +140,7 @@ export default () =>
               id="password"
               value={formData.password} 
               onChange={handleChange}
-              className={errors.password ? 'input-error shake' : ''}
+              className={`text-black ${errors.password ? 'input-error shake' : ''}`}
             />
             {errors.password && <div className="error-message">{errors.password}</div>}
             <button type="submit">Login</button>
