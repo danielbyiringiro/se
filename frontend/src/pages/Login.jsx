@@ -117,11 +117,11 @@ export default () =>
     <div className="register-container">
       <div className="overlay">
         <div className="welcome">
-          <h1>Login Portal</h1>
+          <h1 className='text-4xl font-bold'>Login Portal</h1>
         </div>
         
         <div className="register-box">
-          <h2>Login Now!</h2>
+          <h2 className=''>Login Now!</h2>
           <form onSubmit={handleSubmit}>
             <input 
               type="email" 

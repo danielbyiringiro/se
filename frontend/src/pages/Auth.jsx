@@ -113,7 +113,7 @@ export default () =>
     <div className="register-container">
       <div className="overlay">
         <div className="welcome">
-          <h1>Authentication Portal</h1>
+          <h1 className='text-4xl font-bold'>Authentication Portal</h1>
         </div>
         
         <div className="register-box">
