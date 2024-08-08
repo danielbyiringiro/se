@@ -178,7 +178,7 @@ export default () =>
             <button type="submit">Register</button>
           </form>
           <p>
-            Already have an account? <Link to="/login">Sign In</Link>
+            <routes>Already have an account? <Link to="/login">Sign In</Link></routes>
           </p>
         </div>
       </div>

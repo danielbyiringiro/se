@@ -1,15 +1,16 @@
 import React from 'react';
+import Notifications from '../components/Notifications';
 import Sidebar from '../components/SiderBar';
-import UploadTranscript from '../components/UploadTranscript';
 import './Dashboard.css';
 
-const dashboard =()=>{
+
+const userNotifications = () => {
   return (
     <div className="dashboard">
       <Sidebar />
-      <UploadTranscript/>
+      <Notifications />
     </div>
   );
-}
+};
 
-export default dashboard;
+export default userNotifications ;

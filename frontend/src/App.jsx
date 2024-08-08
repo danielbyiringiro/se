@@ -39,6 +39,9 @@ const App = () => {
             path="/appointment"
             element={isAuthenticated ? <AppointmentDashboard /> : <Navigate to="/login" />}
           />
+          <Route path="/manage" element={isAuthenticated ? <TranscriptManagement/> : <Navigate to="/login" />} />
+          <Route path = "/notification" element ={isAuthenticated ? <UserNotifications/>: <Navigate to="/login" />}/>
+          <Route path = "/setting" element ={isAuthenticated ? <UserSettings/>: <Navigate to="/login" />}/>
 
           {/* Redirect to home if no match */}
           <Route path="*" element={<Navigate to="/" />} />
@@ -55,3 +58,4 @@ const AppWrapper = () => (
 );
 
 export default AppWrapper;
+
