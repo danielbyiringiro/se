@@ -27,7 +27,9 @@ const Settings = ({ user, onUpdate }) => {
   };
 
   return (
-    <div className="settings-container">
+
+    <div className="main-content">
+    <div className="settings">
       <h2 className="heading">Update Profile</h2>
       <div className="icon-container">
         <label htmlFor="profilePicInput">
@@ -38,7 +40,7 @@ const Settings = ({ user, onUpdate }) => {
               className="profile-pic"
             />
           ) : (
-            <FaUserCircle size={80} color="#4A90E2" />
+            <FaUserCircle size={80} color="#6f2b2b" />
           )}
         </label>
         <input
@@ -80,6 +82,7 @@ const Settings = ({ user, onUpdate }) => {
           Save Changes
         </button>
       </form>
+    </div>
     </div>
   );
 };

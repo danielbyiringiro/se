@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import Settings from '../components/Settings';
+import UserProfile from '../components/Settings';
 import Sidebar from '../components/SiderBar';
 import './Dashboard.css';
+
 
 const UserSettings = () => {
   const [user, setUser] = useState({
@@ -20,7 +21,7 @@ const UserSettings = () => {
   return (
     <div className = "dashboard">
        <Sidebar/>
-      <Settings user={user} onUpdate={handleUpdateUser} />
+       <UserProfile user={user} onUpdate={handleUpdateUser} />
     </div>
   );
 };
