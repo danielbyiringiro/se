@@ -127,7 +127,7 @@ export default () =>
           <h2 className=''>Login Now!</h2>
           <form onSubmit={handleSubmit}>
             <input 
-              type="email" 
+              type="text" 
               placeholder="Email" 
               name="email" 
               id="email"

@@ -42,6 +42,7 @@ export default () =>
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) 
     {
       newErrors.email = 'Please enter a valid email address.';
+      console.log(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email))
     }
     else if (!formData.email.endsWith("ashesi.edu.gh"))
     {
@@ -158,7 +159,7 @@ export default () =>
             />
             {errors.name && <div className="error-message">{errors.name}</div>}
             <input 
-              type="email" 
+              type="text" 
               placeholder="Email" 
               name="email" 
               id="email"
