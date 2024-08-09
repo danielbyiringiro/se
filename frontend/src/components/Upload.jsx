@@ -244,6 +244,16 @@ export default () =>
              </form>
            </div>
          )}
+          <div className="mt-6">
+            <a
+              href="/se/db.pdf" // Adjust the path as needed
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-green-600 hover:underline"
+            >
+              Download Sample PDF
+            </a>
+          </div>
        </DialogContent>
      </Dialog>
     </div>
