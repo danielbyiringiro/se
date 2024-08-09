@@ -33,35 +33,6 @@ export default () =>
     {
       newErrors.email = 'Please enter a valid email address.';
     }
-    else if (!formData.email.endsWith("ashesi.edu.gh"))
-    {
-      newErrors.email = 'Please use your Ashesi email address.';
-    }
-    else {
-      try {
-        const response = await fetch('http://13.51.206.149/Degree_audit/backend/actions/check_email.php', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ email: formData.email })
-        });
-
-        if (!response.ok) {
-          throw new Error('Failed to check email');
-        }
-
-        const data = await response.json();
-
-        if (data.status === 'error') 
-        {
-          newErrors.email = 'Email address is not registered sign up.';
-        }
-      } catch (error) {
-        console.error('Error checking email:', error.message);
-        newErrors.email = 'Error checking email.';
-      }
-    }
 
     if (!formData.password)
     {
