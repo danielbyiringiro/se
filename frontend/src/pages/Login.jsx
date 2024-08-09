@@ -82,6 +82,9 @@ export default () =>
     } 
     catch (error) 
     {
+      newErrors.password = data.message;
+      setErrors(newErrors);
+      console.log(data.message)
       console.error('Error submitting form data:', error.message);
     }
   }
