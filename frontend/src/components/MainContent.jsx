@@ -31,7 +31,7 @@ const MainContent = () => {
           throw new Error(data.error);
         }
         const totalCredits = data.courses.reduce((sum, course) => sum + course.UNITS, 0);
-        const totalRequiredCredits = 33.5; // Assuming this is the total required credits
+        const totalRequiredCredits = 34.5; // Assuming this is the total required credits
         
         setCompletedCredits(totalCredits);
         setCompletionRate(((totalCredits / totalRequiredCredits) * 100).toFixed(2));
@@ -58,7 +58,7 @@ const MainContent = () => {
         </div>
         <div className="stat-item">
           <div className="stat-title">Credits</div>
-          <div className="stat-value">{completedCredits}/33.5</div>
+          <div className="stat-value">{completedCredits}/34.5</div>
         </div>
         <div className="stat-item whitespace-nowrap w-auto">
           <div className="stat-title">Courses Completed</div>
