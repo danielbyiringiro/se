@@ -7,8 +7,8 @@ import './Dashboard.css';
 
 const UserSettings = () => {
   const [user, setUser] = useState({
-    name: 'Eddy Kubwimana',
-    email: 'eddy.kubwimana@ashesi.edu.gh',
+    name: sessionStorage.getItem('name'),
+    email: sessionStorage.getItem('email'),
   });
 
   const handleUpdateUser = (updatedUser) => {
