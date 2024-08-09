@@ -14,7 +14,7 @@ const sidebar = () => {
     sessionStorage.setItem('studentid', '');
     sessionStorage.setItem('id', '');
     sessionStorage.setItem('email', '');
-    navigate('/login'); 
+    navigate('/se/login'); 
   };
   return (
     <div className="sidebar">
@@ -22,11 +22,11 @@ const sidebar = () => {
         DEGREE AUDIT
       </div>
       <ul className="sidebar-menu">
-        <li><Link className='custom-link' to = '/dashboard'><FaTachometerAlt /> Dashboard</Link></li>
-        <li><Link className='custom-link' to = '/transcript'><FaUpload /> Upload Transcript</Link></li>
-        <li> <Link className='custom-link' to = '/appointment'><FaCalendarAlt /> My Appointment</Link></li>
-        <li><Link className='custom-link' to = '/notification'><FaBell /> Notifications</Link></li>
-        <li><Link className='custom-link' to = '/setting'><FaCog />  Settings</Link></li>
+        <li><Link className='custom-link' to = '/se/dashboard'><FaTachometerAlt /> Dashboard</Link></li>
+        <li><Link className='custom-link' to = '/se/transcript'><FaUpload /> Upload Transcript</Link></li>
+        <li> <Link className='custom-link' to = '/se/appointment'><FaCalendarAlt /> My Appointment</Link></li>
+        <li><Link className='custom-link' to = '/se/notification'><FaBell /> Notifications</Link></li>
+        <li><Link className='custom-link' to = '/se/setting'><FaCog />  Settings</Link></li>
       </ul>
       <div className="sidebar-logout" onClick={handleLogout}>
         <FaSignOutAlt /> Logout

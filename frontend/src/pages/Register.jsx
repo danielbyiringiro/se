@@ -123,7 +123,7 @@ export default () =>
       if (data.status === 'success') 
       {
         setErrors({});
-        navigate('/auth');
+        navigate('/se/auth');
       } 
       else 
       {
@@ -218,7 +218,7 @@ export default () =>
             <button type="submit">Register</button>
           </form>
           <p>
-            Already have an account? <Link to="/login">Sign In</Link>
+            Already have an account? <Link to="/se/login">Sign In</Link>
           </p>
         </div>
       </div>

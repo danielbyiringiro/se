@@ -71,7 +71,7 @@ export default () =>
         sessionStorage.setItem('email', data.user_data['EMAIL']);
         sessionStorage.setItem('name', data.user_data['NAME']);
         sessionStorage.setItem('major', data.user_data['MAJOR']);
-        navigate("/")
+        navigate("/se")
       } 
       else 
       {
@@ -122,7 +122,7 @@ export default () =>
             {errors.password && <div className="error-message">{errors.password}</div>}
             <button type="submit">Login</button>
             <p>
-            Do not have an account? <Link to="/register">Sign Up</Link>
+            Do not have an account? <Link to="/se/register">Sign Up</Link>
             </p>
           </form>
         </div>

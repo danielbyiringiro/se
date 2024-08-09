@@ -106,7 +106,7 @@ export default () =>
         sessionStorage.setItem('email', data.result['EMAIL']);
         sessionStorage.setItem('name', data.result['NAME']);
         sessionStorage.setItem('major', data.result['MAJOR']);
-        navigate("/")
+        navigate("/se")
       } 
       else 
       {
