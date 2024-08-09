@@ -66,11 +66,11 @@ export default () =>
       if (data.status === 'success') 
       {
         sessionStorage.setItem('isLoggedIn', 'true');
-        sessionStorage.setItem('year', data.result['YEAR']);
-        sessionStorage.setItem('id', data.result['ID']);
-        sessionStorage.setItem('email', data.result['EMAIL']);
-        sessionStorage.setItem('name', data.result['NAME']);
-        sessionStorage.setItem('major', data.result['MAJOR']);
+        sessionStorage.setItem('year', data.user_data['YEAR']);
+        sessionStorage.setItem('id', data.user_data['ID']);
+        sessionStorage.setItem('email', data.user_data['EMAIL']);
+        sessionStorage.setItem('name', data.user_data['NAME']);
+        sessionStorage.setItem('major', data.user_data['MAJOR']);
         navigate("/")
       } 
       else 
