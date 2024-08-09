@@ -24,30 +24,30 @@ const App = () => {
     <div>
       <main>
         <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/auth" element={<Auth />} />
+          <Route path="/se/login" element={<Login />} />
+          <Route path="/se/about" element={<About />} />
+          <Route path="/se/register" element={<Register />} />
+          <Route path="/se/auth" element={<Auth />} />
 
           {/* Protected Routes */}
           <Route
-            path="/"
-            element={isAuthenticated ? <Dashboard /> : <Navigate to="/login" />}
+            path="/se"
+            element={isAuthenticated ? <Dashboard /> : <Navigate to="/se/login" />}
           />
           <Route
-            path="/transcript"
-            element={isAuthenticated ? <TranscriptDashboard /> : <Navigate to="/login" />}
+            path="/se/transcript"
+            element={isAuthenticated ? <TranscriptDashboard /> : <Navigate to="/se/login" />}
           />
           <Route
-            path="/appointment"
-            element={isAuthenticated ? <AppointmentDashboard /> : <Navigate to="/login" />}
+            path="/se/appointment"
+            element={isAuthenticated ? <AppointmentDashboard /> : <Navigate to="/se/login" />}
           />
-          <Route path="/manage" element={isAuthenticated ? <TranscriptManagement/> : <Navigate to="/login" />} />
-          <Route path = "/notification" element ={isAuthenticated ? <UserNotifications/>: <Navigate to="/login" />}/>
-          <Route path = "/setting" element ={isAuthenticated ? <UserSettings/>: <Navigate to="/login" />}/>
+          <Route path="/se/manage" element={isAuthenticated ? <TranscriptManagement/> : <Navigate to="/se/login" />} />
+          <Route path = "/se/notification" element ={isAuthenticated ? <UserNotifications/>: <Navigate to="/se/login" />}/>
+          <Route path = "/se/setting" element ={isAuthenticated ? <UserSettings/>: <Navigate to="/se/login" />}/>
 
           {/* Redirect to home if no match */}
-          <Route path="*" element={<Navigate to="/" />} />
+          <Route path="*" element={<Navigate to="/se" />} />
         </Routes>
       </main>
     </div>
